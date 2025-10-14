@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrein - Seu Portal de Fitness e Saúde</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>NUTREIN</span>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-btn active" data-section="home">
+                    <i class="fas fa-home"></i>
+                    Início
+                </button>
+                <button class="nav-btn" data-section="chat">
+                    <i class="fas fa-comments"></i>
+                    Chat IA
+                </button>
+                <button class="nav-btn" data-section="professionals">
+                    <i class="fas fa-users"></i>
+                    Profissionais
+                </button>
+                <button class="nav-btn" data-section="exercises">
+                    <i class="fas fa-dumbbell"></i>
+                    Exercícios
+                </button>
+                <button class="nav-btn" data-section="auth">
+                    <i class="fas fa-user"></i>
+                    Conta
+                </button>
+            </div>
+            <div class="user-section" id="userSection" style="display: none;">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="userName">Usuário</span>
+                </div>
+                <button class="btn btn-logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Bem-vindo ao <span class="highlight">Nutrein</span></h1>
+                    <p>Seu portal completo para fitness, saúde e bem-estar. Conecte-se com profissionais, descubra exercícios e converse com nossa IA especializada.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" data-section="chat">
+                            <i class="fas fa-comments"></i>
+                            Chat com IA
+                        </button>
+                        <button class="btn btn-secondary" data-section="professionals">
+                            <i class="fas fa-users"></i>
+                            Profissionais
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Chat Inteligente</h3>
+                    <p>Converse com nossa IA especializada em fitness e nutrição para tirar dúvidas e receber orientações personalizadas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Profissionais</h3>
+                    <p>Encontre nutricionistas e treinadores especializados em diversos esportes para te ajudar a alcançar seus objetivos.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Exercícios</h3>
+                    <p>Biblioteca completa de exercícios organizados por grupo muscular com instruções detalhadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat" class="section">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2><i class="fas fa-comments"></i> Chat com IA - Assistente de Fitness</h2>
+                    <p>Faça perguntas sobre exercícios, nutrição e saúde</p>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-welcome">
+                        <i class="fas fa-heart"></i>
+                        <p>Olá! Sou seu assistente de fitness. Como posso te ajudar hoje?</p>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Digite sua pergunta sobre fitness...">
+                    <button id="sendBtn" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professionals Section -->
+        <section id="professionals" class="section">
+            <div class="section-header">
+                <h2>Nossos Profissionais</h2>
+                <p>Especialistas qualificados para te ajudar a alcançar seus objetivos</p>
+            </div>
+            <div class="professionals-grid" id="professionalsGrid">
+                <!-- Professionals will be loaded by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Exercises Section -->
+        <section id="exercises" class="section">
+            <div class="section-header">
+                <h2>Biblioteca de Exercícios</h2>
+                <p>Exercícios organizados por grupo muscular</p>
+            </div>
+            
+            <!-- Nova estrutura: cards de grupos musculares -->
+            <div class="muscle-groups-grid" id="muscleGroupsGrid">
+                <!-- Muscle groups will be loaded by JavaScript -->
+            </div>
+            
+            <!-- Lista de exercícios do grupo selecionado -->
+            <div class="exercises-list-container" id="exercisesListContainer" style="display: none;">
+                <div class="exercises-list-header">
+                    <button class="back-btn" id="backToMuscleGroups">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar
+                    </button>
+                    <h3 id="selectedMuscleGroup"></h3>
+                </div>
+                <div class="exercises-list-grid" id="exercisesListGrid">
+                    <!-- Exercises will be loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Auth Section -->
+        <section id="auth" class="section">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2><i class="fas fa-user"></i> Minha Conta</h2>
+                    <p>Faça login ou crie sua conta para acessar recursos exclusivos</p>
+                </div>
+                
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Entrar
+                    </button>
+                    <button class="auth-tab" data-tab="register">
+                        <i class="fas fa-user-plus"></i>
+                        Cadastrar
+                    </button>
+                </div>
+
+                <!-- Login Form -->
+                <div class="auth-form-container" id="loginForm">
+                    <form class="auth-form" id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginEmail">
+                                <i class="fas fa-envelope"></i>
+                                E-mail
+                            </label>
+                            <input type="email" id="loginEmail" required placeholder="Seu e-mail">
+                            <span class="form-error" id="loginEmailError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginPassword">
+                                <i class="fas fa-lock"></i>
+                                Senha
+                            </label>
+                            <input type="password" id="loginPassword" required placeholder="Sua senha">
+                            <span class="form-error" id="loginPasswordError"></span>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="rememberMe">
+                                <span class="checkmark"></span>
+                                Lembrar de mim
+                            </label>
+                            <a href="#" class="forgot-password">Esqueci minha senha</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary auth-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Entrar
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Register Form -->
+                <div class="auth-form-container hidden" id="registerForm">
+                    <form class="auth-form" id="registerFormElement">
+                        <div class="form-group">
+                            <label for="registerName">
+                                <i class="fas fa-user"></i>
+                                Nome Completo
+                            </label>
+                            <input type="text" id="registerName" required placeholder="Seu nome completo">
+                            <span class="form-error" id="registerNameError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerEmail">
+                                <i class="fas fa-envelope"></i>
+                                E-mail
+                            </label>
+                            <input type="email" id="registerEmail" required placeholder="Seu e-mail">
+                            <span class="form-error" id="registerEmailError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerPassword">
+                                <i class="fas fa-lock"></i>
+                                Senha
+                            </label>
+                            <input type="password" id="registerPassword" required placeholder="Crie uma senha">
+                            <span class="form-error" id="registerPasswordError"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerConfirmPassword">
+                                <i class="fas fa-lock"></i>
+                                Confirmar Senha
+                            </label>
+                            <input type="password" id="registerConfirmPassword" required placeholder="Confirme sua senha">
+                            <span class="form-error" id="registerConfirmPasswordError"></span>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreeTerms" required>
+                                <span class="checkmark"></span>
+                                Concordo com os <a href="#">Termos de Uso</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary auth-btn">
+                            <i class="fas fa-user-plus"></i>
+                            Criar Conta
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="auth-message" id="authMessage"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Profile Modal -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="profile-modal">
+            <button class="modal-close" id="closeProfileModal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profileName"></h2>
+                    <div class="specialty-badge" id="profileSpecialty"></div>
+                    <div class="profile-meta">
+                        <span class="rating">
+                            <i class="fas fa-star"></i>
+                            <span id="profileRating"></span>
+                        </span>
+                        <span class="experience">
+                            <i class="fas fa-trophy"></i>
+                            <span id="profileExperience"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-tabs">
+                <button class="profile-tab active" data-tab="about">
+                    <i class="fas fa-info-circle"></i>
+                    Sobre
+                </button>
+                <button class="profile-tab" data-tab="portfolio">
+                    <i class="fas fa-briefcase"></i>
+                    Portfólio
+                </button>
+                <button class="profile-tab" data-tab="reviews">
+                    <i class="fas fa-star"></i>
+                    Avaliações
+                </button>
+                <button class="profile-tab" data-tab="contact">
+                    <i class="fas fa-envelope"></i>
+                    Contato
+                </button>
+            </div>
+
+            <div class="profile-content">
+                <!-- About Tab -->
+                <div class="profile-tab-content active" id="aboutTab">
+                    <div class="about-section">
+                        <h3><i class="fas fa-user"></i> Sobre o Profissional</h3>
+                        <p id="profileDescription"></p>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h3><i class="fas fa-certificate"></i> Certificações</h3>
+                        <div id="profileCertifications"></div>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h3><i class="fas fa-star"></i> Especialidades</h3>
+                        <div id="profileSpecialties" class="specialties-list"></div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Tab -->
+                <div class="profile-tab-content" id="portfolioTab">
+                    <div class="portfolio-grid" id="profilePortfolio"></div>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div class="profile-tab-content" id="reviewsTab">
+                    <div class="reviews-summary">
+                        <div class="reviews-rating">
+                            <div class="rating-number" id="reviewsRating"></div>
+                            <div class="rating-stars" id="reviewsStars"></div>
+                            <div class="rating-count" id="reviewsCount"></div>
+                        </div>
+                    </div>
+                    <div class="reviews-list" id="profileReviews"></div>
+                </div>
+
+                <!-- Contact Tab -->
+                <div class="profile-tab-content" id="contactTab">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>E-mail</strong>
+                                <p id="profileEmail"></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Telefone</strong>
+                                <p id="profilePhone"></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Localização</strong>
+                                <p id="profileLocation"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-section">
+                        <h3>Enviar Mensagem</h3>
+                        <form class="contact-form" id="contactProfessionalForm">
+                            <div class="form-group">
+                                <label>Seu Nome</label>
+                                <input type="text" required placeholder="Digite seu nome">
+                            </div>
+                            <div class="form-group">
+                                <label>Seu E-mail</label>
+                                <input type="email" required placeholder="Digite seu e-mail">
+                            </div>
+                            <div class="form-group">
+                                <label>Mensagem</label>
+                                <textarea rows="4" required placeholder="Digite sua mensagem"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Details Modal -->
+    <div class="modal-overlay" id="exerciseModal">
+        <div class="exercise-modal">
+            <button class="modal-close" id="closeExerciseModal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="exercise-modal-header">
+                <div class="exercise-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <div class="exercise-title-info">
+                    <h2 id="exerciseModalName"></h2>
+                    <div class="exercise-badges">
+                        <span class="badge badge-group" id="exerciseModalGroup"></span>
+                        <span class="badge badge-difficulty" id="exerciseModalDifficulty"></span>
+                        <span class="badge badge-equipment" id="exerciseModalEquipment"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-modal-content">
+                <!-- Imagem ilustrativa -->
+                <div class="exercise-image-section">
+                    <div class="exercise-image" id="exerciseModalImage">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                </div>
+
+                <!-- Descrição -->
+                <div class="exercise-section">
+                    <h3><i class="fas fa-info-circle"></i> Descrição</h3>
+                    <p id="exerciseModalDescription"></p>
+                </div>
+
+                <!-- Execução -->
+                <div class="exercise-section">
+                    <h3><i class="fas fa-list-ol"></i> Como Executar</h3>
+                    <ol class="execution-steps" id="exerciseModalExecution"></ol>
+                </div>
+
+                <!-- Dicas -->
+                <div class="exercise-section">
+                    <h3><i class="fas fa-lightbulb"></i> Dicas Importantes</h3>
+                    <ul class="tips-list" id="exerciseModalTips"></ul>
+                </div>
+
+                <!-- Erros Comuns -->
+                <div class="exercise-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Erros Comuns a Evitar</h3>
+                    <ul class="errors-list" id="exerciseModalErrors"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>Nutrein</span>
+            </div>
+            <p>Transformando vidas através do fitness e bem-estar</p>
+            <p class="footer-copy">© 2025 Nutrein. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
