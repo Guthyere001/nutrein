@@ -87,13 +87,13 @@ const professionals = [
     ],
   },
   {
-    name: "Dr. Rafael Monteiro",
+    name: "Dr. Gabriel Monteiro",
     specialty: "Masoterapeuta",
     experience: "6 anos",
     rating: 4.9,
     description:
       "Especialista em técnicas de relaxamento e alívio muscular, promovendo equilíbrio e bem-estar físico através de massagens terapêuticas.",
-    email: "rafael.monteiro@nutrein.com",
+    email: "gabriel.monteiro@nutrein.com",
     phone: "(11) 98765-4323",
     location: "São Paulo, SP",
     certifications: [
